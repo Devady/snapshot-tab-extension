@@ -23,6 +23,11 @@ module.exports = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+        exclude: /\.module\.css$/,
+      },
     ],
   },
   resolve: {
@@ -60,5 +65,14 @@ module.exports = {
         },
       ],
     }),
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     {
+    //       from: path.join(srcDir, 'content', 'index.css'),
+    //       to: path.join(distDir, 'content.css'),
+    //       force: true,
+    //     },
+    //   ],
+    // }),
   ],
 };
