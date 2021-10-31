@@ -10,6 +10,7 @@ module.exports = {
   entry: {
     background: path.join(srcDir, 'background', 'index.ts'),
     content: path.join(srcDir, 'content', 'index.ts'),
+    preview: path.join(srcDir, 'preview', 'index.ts'),
   },
   output: {
     path: distDir,
@@ -36,9 +37,9 @@ module.exports = {
   plugins: [
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
-      template: path.join(srcDir, 'background', 'index.html'),
-      filename: 'background.html',
-      chunks: ['background'],
+      template: path.join(srcDir, 'preview', 'index.html'),
+      filename: 'preview.html',
+      chunks: ['preview'],
       cache: false,
     }),
     new CopyWebpackPlugin({
@@ -65,14 +66,5 @@ module.exports = {
         },
       ],
     }),
-    // new CopyWebpackPlugin({
-    //   patterns: [
-    //     {
-    //       from: path.join(srcDir, 'content', 'index.css'),
-    //       to: path.join(distDir, 'content.css'),
-    //       force: true,
-    //     },
-    //   ],
-    // }),
   ],
 };

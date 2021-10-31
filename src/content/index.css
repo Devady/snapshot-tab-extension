@@ -1,5 +1,6 @@
 .snap-btn {
   background: red;
+  border: 2px solid red;
   color: white;
   font-size: 20px;
   border-radius: 50%;
@@ -18,5 +19,4 @@
 .snap-btn:hover {
   background-color: white;
   color: red;
-  border: 1px solid red;
 }
