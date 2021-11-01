@@ -1,6 +1,6 @@
 .snap-btn {
-  background: red;
-  border: 2px solid red;
+  background: #7e3661;
+  border: 2px solid #7e3661;
   color: white;
   font-size: 20px;
   border-radius: 50%;
@@ -10,6 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.25s ease;
 
   position: fixed;
   bottom: 12px;
@@ -18,5 +19,9 @@
 
 .snap-btn:hover {
   background-color: white;
-  color: red;
+  color: #7e3661;
+}
+
+.is-hidden {
+  display: none;
 }

@@ -1,9 +1,15 @@
 export type MessageSnapshotRequest = 'SNAPSHOT::REQUEST';
-export type MessageSnapshotSrcRequest = 'SNAPSHOT::SRC::REQUEST';
+export type MessageSnapshotData = 'SNAPSHOT::DATA';
 
 export interface ISnapshotRequest {
-  type: MessageSnapshotRequest | MessageSnapshotSrcRequest;
-  data: {};
+  type: MessageSnapshotRequest;
 }
 
-export type MessageTypes = ISnapshotRequest;
+export interface ISnapshotData {
+  type: MessageSnapshotData;
+  data: {
+    screenshotUrl: string;
+  };
+}
+
+export type MessageTypes = ISnapshotRequest | ISnapshotData;

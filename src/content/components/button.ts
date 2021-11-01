@@ -1,15 +1,27 @@
-import { ISnapshotRequest } from '../../types';
+import { sendSnapshotRequest } from '../../messaging';
 
-const sendSnapshotRequest = () =>
-  chrome.runtime.sendMessage({ type: 'SNAPSHOT::REQUEST' } as ISnapshotRequest);
+import './button.css';
+
+const CLASS_BUTTON = 'snap-btn';
+const CLASS_HIDDEN = 'is-hidden';
 
 export const Button = (): HTMLButtonElement => {
   const buttonEl = document.createElement('button');
 
   buttonEl.innerText = 'S';
-  buttonEl.classList.add('snap-btn');
+  buttonEl.classList.add(CLASS_BUTTON);
 
-  buttonEl.addEventListener('click', sendSnapshotRequest);
+  buttonEl.addEventListener('click', () => {
+    requestAnimationFrame(() => {
+      buttonEl.classList.add(CLASS_HIDDEN);
+
+      sendSnapshotRequest(() => {
+        requestAnimationFrame(() => {
+          buttonEl.classList.remove(CLASS_HIDDEN);
+        });
+      });
+    });
+  });
 
   return buttonEl;
 };

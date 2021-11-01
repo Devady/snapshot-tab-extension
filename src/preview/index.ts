@@ -1,19 +1,26 @@
+import { MessageTypes } from '../types';
+
 function setScreenshotUrl(url: string) {
   const imageEl = document.getElementById('target') as HTMLImageElement;
 
   imageEl.src = url;
 }
 
-chrome.runtime.onMessage.addListener(function listener(message) {
-  const {
-    data: { screenshotUrl, tabId },
-  } = message;
+const listener = (
+  message: MessageTypes,
+  _: chrome.runtime.MessageSender,
+  sendResponse: () => void
+) => {
+  switch (message.type) {
+    case 'SNAPSHOT::DATA':
+      setScreenshotUrl(message.data.screenshotUrl);
 
-  chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
-    if (tabId !== tab.id) return;
+      sendResponse();
 
-    setScreenshotUrl(screenshotUrl);
+      chrome.runtime.onMessage.removeListener(listener);
 
-    chrome.runtime.onMessage.removeListener(listener);
-  });
-});
+      return true;
+  }
+};
+
+chrome.runtime.onMessage.addListener(listener);
