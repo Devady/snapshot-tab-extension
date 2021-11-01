@@ -11,6 +11,7 @@ module.exports = {
     background: path.join(srcDir, 'background', 'index.ts'),
     content: path.join(srcDir, 'content', 'index.ts'),
     preview: path.join(srcDir, 'preview', 'index.ts'),
+    popup: path.join(srcDir, 'popup', 'index.ts'),
   },
   output: {
     path: distDir,
@@ -40,6 +41,12 @@ module.exports = {
       template: path.join(srcDir, 'preview', 'index.html'),
       filename: 'preview.html',
       chunks: ['preview'],
+      cache: false,
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(srcDir, 'popup', 'index.html'),
+      filename: 'popup.html',
+      chunks: ['popup'],
       cache: false,
     }),
     new CopyWebpackPlugin({

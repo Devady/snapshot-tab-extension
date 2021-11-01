@@ -1,5 +1,9 @@
 import { Button } from './components/button';
 
-const button = Button();
+function init() {
+  const button = Button();
 
-document.body.appendChild(button);
+  document.body.appendChild(button);
+}
+
+init();

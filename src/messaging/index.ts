@@ -30,9 +30,31 @@ export const sendSnapshotData = (
     response
   );
 
+export const sendSnapshotAllowDomain = (
+  domain: string,
+  response: () => void
+) => {
+  sendSnapshotRuntimeMessage(
+    { type: 'SNAPSHOT::ALLOW::DOMAIN', data: { domain } },
+    response
+  );
+};
+
+export const sendSnapshotBlockDomain = (
+  domain: string,
+  response: () => void
+) => {
+  sendSnapshotRuntimeMessage(
+    { type: 'SNAPSHOT::BLOCK::DOMAIN', data: { domain } },
+    response
+  );
+};
+
 export const messaging = {
   sendSnapshotRequest,
   sendSnapshotData,
+  sendSnapshotAllowDomain,
+  sendSnapshotBlockDomain,
 };
 
 export default messaging;
